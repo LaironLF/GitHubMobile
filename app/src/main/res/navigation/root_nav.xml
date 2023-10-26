@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_nav"
+    app:startDestination="@id/authorizationFragment">
+
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="com.laironlf.githubmobile.presentation.fragments.authorization.AuthFragment"
+        android:label="fragment_authorization"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_home_nav"
+            app:destination="@id/home_nav"
+            app:launchSingleTop="true"
+
+            app:popUpTo="@id/root_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <navigation
+        android:id="@+id/home_nav"
+        app:startDestination="@id/repositoriesFragment">
+        <fragment
+            android:id="@+id/repositoriesFragment"
+            android:name="com.laironlf.githubmobile.presentation.fragments.repositoriesList.RepositoriesListFragment"
+            android:label="@string/nav_repositories_title"
+            tools:layout="@layout/fragment_repositories_list" >
+            <action
+                android:id="@+id/action_repositoriesFragment_to_detailInfoFragment"
+                app:destination="@id/detailInfoFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/detailInfoFragment"
+            android:name="com.laironlf.githubmobile.presentation.fragments.repositoryInfo.DetailInfoFragment"
+            android:label=""
+            tools:layout="@layout/fragment_detail_info" />
+    </navigation>
+</navigation>

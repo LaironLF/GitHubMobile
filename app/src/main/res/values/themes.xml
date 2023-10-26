@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GitHubMobile" parent="Theme.AppCompat.NoActionBar">
+<!--        BackColor-->
+<!--        <item name="android:background">@color/gitBackground</item>-->
+        <item name="android:windowBackground">@color/gitBackground</item>
+        <item name="android:colorBackground">@color/gitBackground</item>
+        
+<!--        System ui color-->
+        <item name="android:navigationBarColor">@color/gitSystemUI</item>
+        <item name="colorPrimary">@color/gitSystemUI</item>
+        <item name="colorPrimaryDark">@color/gitSystemUI</item>
+
+<!--        Accent color-->
+        <item name="colorAccent">@color/gitBlue</item>
+        
+    </style>
+    <style name="splashScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:navigationBarColor">@color/gitBackground</item>
+        <item name="colorPrimary">@color/gitBackground</item>
+        <item name="colorPrimaryDark">@color/gitBackground</item>
+    </style>
+
+</resources>

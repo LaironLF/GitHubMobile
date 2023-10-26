@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gitBackground">#0D1117</color>
+    <color name="gitRed">#CB4F4F</color>
+    <color name="gitBlue">#58A6FF</color>
+    <color name="gitGreen">#438440</color>
+    <color name="gitSystemUI">#161B22</color>
+
+    <color name="KotlinColor">#A37AEE</color>
+    <color name="JavaScriptColor">#F4E264</color>
+    <color name="JavaColor">#F78819</color>
+    <color name="CSharpColor">#5989FA</color>
+</resources>
