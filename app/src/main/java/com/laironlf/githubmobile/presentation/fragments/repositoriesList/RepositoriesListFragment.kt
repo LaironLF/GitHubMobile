@@ -46,6 +46,7 @@ class RepositoriesListFragment : Fragment() {
                 if (state is State.Loaded) View.VISIBLE else View.GONE
             binding.connectionErrorView.root.visibility =
                 if (state is State.Error && state.error == "connection error") View.VISIBLE else View.GONE
+            binding.emptyRepositories.root.visibility = if (state is State.Empty) View.VISIBLE else View.GONE
 
             adapter.items = if (state is State.Loaded) state.repos else emptyList()
         }
