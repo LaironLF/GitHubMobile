@@ -24,7 +24,6 @@ class KeyValueStorageImpl(context: Context) : KeyValueStorage() {
 
     private fun getUser(): UserInfo? {
         val userName = sharedPrefs.getString(SHARED_PREFS_USER_LOGIN_VALUE_KEY, null) ?: return null
-
         return UserInfo(userName)
     }
 

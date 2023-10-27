@@ -27,7 +27,7 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideGitHubApiService(): GitHubApiService{
+    fun provideGitHubApiService(): GitHubApiService {
         return GitHubRetrofitInstance().api
     }
 
@@ -44,7 +44,7 @@ class DataModule {
     @Singleton
     fun provideGitHubRepository(
         gitHubApiService: GitHubApiService
-    ): GitHubRepository{
+    ): GitHubRepository {
         return GitHubRepositoryImpl(gitHubApiService)
     }
 
