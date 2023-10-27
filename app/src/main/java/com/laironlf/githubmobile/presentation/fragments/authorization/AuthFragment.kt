@@ -1,5 +1,6 @@
 package com.laironlf.githubmobile.presentation.fragments.authorization
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,8 +23,7 @@ class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentAuthBinding.inflate(inflater)
         return binding.root
@@ -38,16 +38,17 @@ class AuthFragment : Fragment() {
     private fun subscribeToState() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             binding.textInputLayout.error = if (state is State.InvalidInput) state.reason else null
-            
-
+            binding.progressBar.visibility = if (state is State.Loading) View.VISIBLE else View.GONE
+            binding.ButtonText.visibility = if (state is State.Loading) View.GONE else View.VISIBLE
+            binding.ButtonSignIn.isClickable = state !is State.Loading
+            binding.editTextToken.isClickable = state !is State.Loading
         }
     }
 
     private fun setupAuthUIElements() {
         with(binding) {
             editTextToken.bindTextTwoWay(
-                liveData = viewModel.token,
-                lifecycleOwner = viewLifecycleOwner
+                liveData = viewModel.token, lifecycleOwner = viewLifecycleOwner
             )
             ButtonSignIn.setOnClickListener { viewModel.onSignButtonPressed() }
         }
@@ -59,14 +60,19 @@ class AuthFragment : Fragment() {
         }
     }
 
+    private fun showAlertDialog(description: String) {
+        val alertBuilder = AlertDialog.Builder(context)
+        with(alertBuilder) {
+            setTitle(R.string.error_title)
+            setMessage(description)
+            setPositiveButton(R.string.ok_button, null)
+        }
+        alertBuilder.create().show()
+    }
+
     private fun handleAction(action: AuthViewModel.Action) {
         when (action) {
-            is AuthViewModel.Action.ShowError -> Toast.makeText(
-                context,
-                action.message,
-                Toast.LENGTH_SHORT
-            ).show()
-
+            is AuthViewModel.Action.ShowError -> showAlertDialog(action.message)
             is AuthViewModel.Action.RouteToMain -> routeToMain()
         }
     }

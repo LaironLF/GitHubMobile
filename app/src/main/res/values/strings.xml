@@ -11,4 +11,6 @@
     <string name="forks">forks</string>
     <string name="watchers">watchers</string>
     <string name="personal_access_token">Personal access token</string>
+    <string name="error_title">Error</string>
+    <string name="ok_button">OK</string>
 </resources>

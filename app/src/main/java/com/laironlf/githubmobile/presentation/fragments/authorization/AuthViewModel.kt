@@ -1,5 +1,6 @@
 package com.laironlf.githubmobile.presentation.fragments.authorization
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,25 +29,29 @@ class AuthViewModel @Inject constructor(
     val actions: Flow<Action> = _actions.receiveAsFlow()
 
     fun onSignButtonPressed() = viewModelScope.launch {
-        _state.postValue(State.Loading)
         handleSignIn()
     }
 
     private suspend fun handleSignIn() = try {
+        _state.postValue(State.Loading)
         appRepository.signIn(token.value!!)
         _actions.send(Action.RouteToMain)
     } catch (e: Exception) {
         when (e) {
-            is HttpException -> _actions.send(Action.ShowError("${e.code()}"))
+            is HttpException -> _state.postValue(State.InvalidInput(MSG_INVALID_TOKEN))
+            is IllegalArgumentException -> _state.postValue(State.InvalidInput(MSG_INVALID_TOKEN))
             is UnknownHostException -> _actions.send(Action.ShowError(MSG_CONNECTION_ERROR))
-            else -> _actions.send(Action.ShowError(e.message.toString()))
+            else -> {
+                _actions.send(Action.ShowError(e.message.toString()))
+                _state.postValue(State.Idle)
+            }
         }
     }
 
 
     companion object {
-        private const val MSG_CONNECTION_ERROR = "Connection error"
-        private const val MSG_INVALID_TOKEN = "invalid token"
+        const val MSG_CONNECTION_ERROR = "Connection error"
+        const val MSG_INVALID_TOKEN = "invalid token"
     }
 
     sealed interface State {

@@ -12,4 +12,5 @@
     <color name="JavaScriptColor">#F4E264</color>
     <color name="JavaColor">#F78819</color>
     <color name="CSharpColor">#5989FA</color>
+    <color name="text_error">#B00020</color>
 </resources>
