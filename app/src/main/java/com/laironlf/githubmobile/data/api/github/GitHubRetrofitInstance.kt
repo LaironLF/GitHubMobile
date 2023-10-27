@@ -8,18 +8,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
 class GitHubRetrofitInstance {
-    private val client: OkHttpClient by lazy {
-        val logs = HttpLoggingInterceptor()
-        logs.level = HttpLoggingInterceptor.Level.BODY
-        OkHttpClient.Builder()
-            .addInterceptor(logs)
-            .build()
-    }
     private val retrofit: Retrofit by lazy {
         val json = Json { ignoreUnknownKeys = true }
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(client)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
