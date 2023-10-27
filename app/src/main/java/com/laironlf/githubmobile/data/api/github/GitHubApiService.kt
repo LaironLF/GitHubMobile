@@ -41,8 +41,6 @@ interface GitHubApiService {
 
 
     companion object {
-        private const val API_VERSION_KEY = "X-GitHub-Api-Version"
-        private const val API_VERSION_VALUE = "2022-11-28"
         private const val API_AUTHORIZATION_KEY = "Authorization"
     }
 
