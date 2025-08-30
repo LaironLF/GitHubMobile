@@ -1,9 +1,8 @@
 package com.laironlf.githubmobile.data.storage
 
-import android.content.Context
 import android.content.SharedPreferences
-import com.laironlf.githubmobile.domain.entities.UserInfo
 import androidx.core.content.edit
+import com.laironlf.githubmobile.domain.entities.UserInfo
 import javax.inject.Inject
 
 class KeyValueStorage @Inject constructor(
