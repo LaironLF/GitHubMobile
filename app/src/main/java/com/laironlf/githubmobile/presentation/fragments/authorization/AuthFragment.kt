@@ -61,13 +61,11 @@ class AuthFragment : Fragment() {
     }
 
     private fun showAlertDialog(description: String) {
-        val alertBuilder = AlertDialog.Builder(context)
-        with(alertBuilder) {
-            setTitle(R.string.error_title)
-            setMessage(description)
-            setPositiveButton(R.string.ok_button, null)
-        }
-        alertBuilder.create().show()
+        AlertDialog.Builder(context)
+            .setTitle(R.string.error_title)
+            .setMessage(description)
+            .setPositiveButton(R.string.ok_button, null)
+            .show()
     }
 
     private fun handleAction(action: AuthViewModel.Action) {
