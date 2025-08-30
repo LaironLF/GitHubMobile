@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.laironlf.githubmobile.domain.entities.UserInfo
 import androidx.core.content.edit
+import javax.inject.Inject
 
-class KeyValueStorage(context: Context) {
+class KeyValueStorage @Inject constructor(
+    private val sharedPrefs: SharedPreferences
+) {
     var authToken: String?
         get() = getToken()
         set(value) = saveToken(value)
@@ -13,9 +16,6 @@ class KeyValueStorage(context: Context) {
         get() = getUser()
         set(value) = saveUser(value)
 
-
-    private val sharedPrefs: SharedPreferences =
-        context.getSharedPreferences(SHARED_PREFS_STORAGE_NAME, Context.MODE_PRIVATE)
 
     private fun getToken(): String? = sharedPrefs.getString(SHARED_PREFS_TOKEN_VALUE_KEY, null)
 
@@ -32,8 +32,8 @@ class KeyValueStorage(context: Context) {
     }
 
     companion object {
-        private const val SHARED_PREFS_STORAGE_NAME = "gitHub_data"
-        private const val SHARED_PREFS_TOKEN_VALUE_KEY = "token_value"
-        private const val SHARED_PREFS_USER_LOGIN_VALUE_KEY = "user_login"
+        const val SHARED_PREFS_STORAGE_NAME = "gitHub_data"
+        const val SHARED_PREFS_TOKEN_VALUE_KEY = "token_value"
+        const val SHARED_PREFS_USER_LOGIN_VALUE_KEY = "user_login"
     }
 }
