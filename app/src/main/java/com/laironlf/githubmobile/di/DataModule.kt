@@ -23,7 +23,7 @@ class DataModule {
     @Singleton
     fun provideKeySharedPreferences(@ApplicationContext context: Context): SharedPreferences {
         return context.getSharedPreferences(
-            KeyValueStorage.SHARED_PREFS_TOKEN_VALUE_KEY,
+            KeyValueStorage.SHARED_PREFS_STORAGE_NAME,
             Context.MODE_PRIVATE
         )
     }
