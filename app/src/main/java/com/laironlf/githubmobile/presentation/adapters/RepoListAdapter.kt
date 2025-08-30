@@ -37,7 +37,12 @@ class RepoListAdapter(private val onItemClick: (String, String) -> Unit) :
         else holder.tvDescription.text = items[position].description
         holder.tvTitle.text = items[position].repoName
         holder.tvLang.text = items[position].language
-        holder.tvLang.setTextColor(items[position].getColor())
+        holder.tvLang.setTextColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                items[position].getColor()
+            )
+        )
         holder.itemView.setOnClickListener {
             onItemClick(
                 items[position].id.toString(), items[position].repoName
