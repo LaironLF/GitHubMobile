@@ -1,10 +1,10 @@
 package com.laironlf.githubmobile.di
 
-import com.laironlf.githubmobile.data.api.github.GitHubApiService
-import com.laironlf.githubmobile.data.api.github.GitHubRepositoryImpl
+import com.laironlf.githubmobile.data.services.GitHubApiService
+import com.laironlf.githubmobile.data.repository.GitHubRepositoryImpl
+import com.laironlf.githubmobile.data.storage.KeyValueStorage
 import com.laironlf.githubmobile.domain.repository.AppRepository
 import com.laironlf.githubmobile.domain.repository.GitHubRepository
-import com.laironlf.githubmobile.domain.repository.KeyValueStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

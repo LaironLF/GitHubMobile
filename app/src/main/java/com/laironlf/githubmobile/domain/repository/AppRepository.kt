@@ -1,6 +1,7 @@
 package com.laironlf.githubmobile.domain.repository
 
 import android.util.Base64
+import com.laironlf.githubmobile.data.storage.KeyValueStorage
 import com.laironlf.githubmobile.domain.entities.JsonFile
 import com.laironlf.githubmobile.domain.entities.Repo
 import com.laironlf.githubmobile.domain.entities.RepoDetails

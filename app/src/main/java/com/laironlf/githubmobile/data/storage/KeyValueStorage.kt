@@ -3,13 +3,12 @@ package com.laironlf.githubmobile.data.storage
 import android.content.Context
 import android.content.SharedPreferences
 import com.laironlf.githubmobile.domain.entities.UserInfo
-import com.laironlf.githubmobile.domain.repository.KeyValueStorage
 
-class KeyValueStorageImpl(context: Context) : KeyValueStorage() {
-    override var authToken: String?
+class KeyValueStorage(context: Context) {
+    var authToken: String?
         get() = getToken()
         set(value) = saveToken(value)
-    override var userInfo: UserInfo?
+    var userInfo: UserInfo?
         get() = getUser()
         set(value) = saveUser(value)
 

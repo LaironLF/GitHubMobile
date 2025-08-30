@@ -1,11 +1,9 @@
-package com.laironlf.githubmobile.data.api.github
+package com.laironlf.githubmobile.data.services
 
 import com.laironlf.githubmobile.domain.entities.JsonFile
 import com.laironlf.githubmobile.domain.entities.Repo
 import com.laironlf.githubmobile.domain.entities.RepoDetails
 import com.laironlf.githubmobile.domain.entities.UserInfo
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path

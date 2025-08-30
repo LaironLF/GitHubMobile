@@ -1,7 +1,7 @@
 package com.laironlf.githubmobile.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.laironlf.githubmobile.data.api.github.GitHubApiService
+import com.laironlf.githubmobile.data.services.GitHubApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
