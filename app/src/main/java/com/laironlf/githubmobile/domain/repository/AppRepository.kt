@@ -43,7 +43,7 @@ class AppRepository(
     ): String {
         return getRepositoryReadme(
             repositoryName = repoDetails.repoName,
-            branchName = repoDetails.branchName,
+            branchName = repoDetails.defaultBranch,
             ownerName = keyValueStorage.userInfo!!.login
         )
     }
