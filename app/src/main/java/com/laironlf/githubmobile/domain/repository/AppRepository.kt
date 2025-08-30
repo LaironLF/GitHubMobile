@@ -5,7 +5,6 @@ import com.laironlf.githubmobile.data.storage.KeyValueStorage
 import com.laironlf.githubmobile.domain.entities.JsonFile
 import com.laironlf.githubmobile.domain.entities.Repo
 import com.laironlf.githubmobile.domain.entities.RepoDetails
-import com.laironlf.githubmobile.domain.entities.UserInfo
 import java.nio.charset.StandardCharsets
 
 class AppRepository(
@@ -45,7 +44,7 @@ class AppRepository(
 
     suspend fun signInByStorageToken(): Boolean {
         return try {
-            signIn(token = keyValueStorage.authToken!!)
+            gitHubRepository.getUserInfo()
             true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -54,19 +53,14 @@ class AppRepository(
         }
     }
 
-    suspend fun signIn(token: String): UserInfo {
-        val userInfo: UserInfo = gitHubRepository.getUserInfo()
-        updateKeyStorage(userInfo = userInfo, token = token)
-        return userInfo
+    suspend fun signIn(token: String) {
+        keyValueStorage.authToken = token
+        keyValueStorage.userInfo = gitHubRepository.getUserInfo()
     }
 
     fun clearLoginData() {
-        updateKeyStorage(null, null)
-    }
-
-    private fun updateKeyStorage(userInfo: UserInfo?, token: String?) {
-        keyValueStorage.userInfo = userInfo
-        keyValueStorage.authToken = token
+        keyValueStorage.userInfo = null
+        keyValueStorage.authToken = null
     }
 
 }
