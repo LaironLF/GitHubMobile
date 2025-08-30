@@ -53,6 +53,7 @@ class AppRepository(
             signIn(token = keyValueStorage.authToken!!)
             true
         } catch (e: Exception) {
+            e.printStackTrace()
             clearLoginData()
             false
         }
