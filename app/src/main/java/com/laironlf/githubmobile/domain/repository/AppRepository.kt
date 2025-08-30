@@ -12,15 +12,11 @@ class AppRepository(
     private val keyValueStorage: KeyValueStorage, private val gitHubRepository: GitHubRepository
 ) {
     suspend fun getRepositories(): List<Repo> {
-        return gitHubRepository.getRepositories(
-            token = keyValueStorage.authToken!!, userName = keyValueStorage.userInfo!!.login
-        )
+        return gitHubRepository.getRepositories(userName = keyValueStorage.userInfo!!.login)
     }
 
     suspend fun getRepository(repoId: String): RepoDetails {
-        return gitHubRepository.getRepository(
-            token = keyValueStorage.authToken!!, repoId = repoId
-        )
+        return gitHubRepository.getRepository(repoId = repoId)
     }
 
 
@@ -30,7 +26,6 @@ class AppRepository(
         branchName: String
     ): String {
         val jsonFile: JsonFile = gitHubRepository.getRepositoryReadme(
-            token = keyValueStorage.authToken!!,
             ownerName = ownerName,
             repositoryName = repositoryName,
             branchName = branchName
@@ -60,7 +55,7 @@ class AppRepository(
     }
 
     suspend fun signIn(token: String): UserInfo {
-        val userInfo: UserInfo = gitHubRepository.getUserInfo(token)
+        val userInfo: UserInfo = gitHubRepository.getUserInfo()
         updateKeyStorage(userInfo = userInfo, token = token)
         return userInfo
     }

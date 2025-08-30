@@ -13,7 +13,6 @@ interface GitHubApiService {
 
     @GET("repos/{owner}/{repo}/readme")
     suspend fun getRepositoryReadme(
-        @Header(API_AUTHORIZATION_KEY) token: String,
         @Path("owner") ownerName: String,
         @Path("repo") repositoryName: String,
         @Query("ref") branchName: String
@@ -21,25 +20,16 @@ interface GitHubApiService {
 
     @GET("repositories/{repoId}")
     suspend fun getRepository(
-        @Header(API_AUTHORIZATION_KEY) token: String,
         @Path("repoId") repoId: String
     ): RepoDetails
 
 
     @GET("users/{owner}/repos")
     suspend fun getRepositories(
-        @Header(API_AUTHORIZATION_KEY) token: String,
         @Path("owner") userName: String
     ): List<Repo>
 
     @GET("user")
-    suspend fun getUserInfo(
-        @Header(API_AUTHORIZATION_KEY) token: String
-    ): UserInfo
-
-
-    companion object {
-        private const val API_AUTHORIZATION_KEY = "Authorization"
-    }
+    suspend fun getUserInfo(): UserInfo
 
 }
