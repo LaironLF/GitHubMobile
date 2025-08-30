@@ -3,6 +3,7 @@ package com.laironlf.githubmobile.data.storage
 import android.content.Context
 import android.content.SharedPreferences
 import com.laironlf.githubmobile.domain.entities.UserInfo
+import androidx.core.content.edit
 
 class KeyValueStorage(context: Context) {
     var authToken: String?
@@ -19,7 +20,7 @@ class KeyValueStorage(context: Context) {
     private fun getToken(): String? = sharedPrefs.getString(SHARED_PREFS_TOKEN_VALUE_KEY, null)
 
     private fun saveToken(token: String?) =
-        sharedPrefs.edit().putString(SHARED_PREFS_TOKEN_VALUE_KEY, token).apply()
+        sharedPrefs.edit { putString(SHARED_PREFS_TOKEN_VALUE_KEY, token) }
 
     private fun getUser(): UserInfo? {
         val userName = sharedPrefs.getString(SHARED_PREFS_USER_LOGIN_VALUE_KEY, null) ?: return null
@@ -27,7 +28,7 @@ class KeyValueStorage(context: Context) {
     }
 
     private fun saveUser(userInfo: UserInfo?) {
-        sharedPrefs.edit().putString(SHARED_PREFS_USER_LOGIN_VALUE_KEY, userInfo?.login).apply()
+        sharedPrefs.edit { putString(SHARED_PREFS_USER_LOGIN_VALUE_KEY, userInfo?.login) }
     }
 
     companion object {
