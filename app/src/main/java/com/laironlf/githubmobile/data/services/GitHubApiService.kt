@@ -5,7 +5,6 @@ import com.laironlf.githubmobile.domain.entities.Repo
 import com.laironlf.githubmobile.domain.entities.RepoDetails
 import com.laironlf.githubmobile.domain.entities.UserInfo
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
